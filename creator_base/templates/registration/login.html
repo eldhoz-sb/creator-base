@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/dark-mode.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+</head>
+<body>
+ 
+      <a href="{% url 'index' %}" class="brand-logo"><img src="{% static 'img/cblogo-dark.png' %}" alt="Logo" style="height: 50px; padding-left:1em; padding-top: 1em;"></a>
+      
+      <button class="btn-floating waves-effect waves-light right" title="Switch to Dark Mode" onclick="toggleDarkMode()" id="dark-mode-toggle" style="margin-right: 10px; margin-top: 10px;">
+        <i class="material-icons" style="vertical-align: middle;">brightness_4</i> <!-- Moon icon by default -->
+      </button>
+      
+
+  <div class="row center-align">
+    <div class="col s6 offset-s3">
+      <div class="card">
+          <form method="post" action="" role="form">
+          {% csrf_token %}
+           <h4 class="title is-4">Sign in</h4>
+
+           <div class="input-field col s12">
+            {{ form.username }}
+            <label for="username">Username</label>
+          </div>
+   
+          <div class="input-field col s12">
+            {{ form.password }}
+            <label for="password">Password</label>
+          </div>
+
+      {% if form.errors %}
+      <div class="row">
+        <div class="col s12">
+          <span style="color: red; font-weight: bold;">Your username or password did not match.</span>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="field">
+      <p class="control">
+        <button type="submit" value="login" class="btn waves-effect waves-light" style="width: 200px;">
+          Sign in
+        </button>
+      </p>
+    </div>
+    <div>
+      <a href="{% url 'password_reset' %}" >Need help signing in?</a>
+    </div>
+   <br><br>
+    <input type="hidden" name="next" value="{{ next }}">
+    New to Creator Base? <a href="{% url 'creator_signup' %}" >Sign up</a>
+  </form>
+  <br>
+  </div>
+  </div>
+</div>
+  <!--  Scripts-->
+  <script>
+    function toggleDarkMode() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+      var darkModeToggle = document.getElementById("dark-mode-toggle");
+      if (element.classList.contains("dark-mode")) {
+        darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Light Mode">wb_sunny</i>';
+        localStorage.setItem('darkMode', true);
+      } else {
+        darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Dark Mode">brightness_4</i>';
+        localStorage.setItem('darkMode', false);
+      }
+    }
+    
+    // Check for dark mode preference on page load
+    var darkModePref = localStorage.getItem('darkMode');
+    if (darkModePref === 'true') {
+      document.body.classList.add('dark-mode');
+      var darkModeToggle = document.getElementById("dark-mode-toggle");
+      darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Light Mode">wb_sunny</i>';
+    }
+    </script>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' }"></script>
+
+  </body>
+</html>

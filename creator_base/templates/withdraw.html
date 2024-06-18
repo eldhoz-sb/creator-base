@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Withdraw Funds</h1>
+    <p>Your current earnings: ${{ earnings }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="amount">Enter the amount you wish to withdraw:</label>
+            <input type="number" name="amount" class="form-control" step="0.01" min="0" max="{{ earnings }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

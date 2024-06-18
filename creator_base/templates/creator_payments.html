@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Your Earnings</h1>
+    <p>You have earned a total of ${{ earnings.tier__price__sum|floatformat:2 }} from your subscriptions.</p>
+    <form action="{% url 'withdraw' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Withdraw Earnings</button>
+    </form>
+{% endblock %}

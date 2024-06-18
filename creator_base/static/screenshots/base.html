@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style> 
+    .nav-wrapper { 
+      background: #1D1B47 linear-gradient(to bottom, #01001B , #01001B50); 
+    } 
+    .page-footer {
+      background: #1D1B47 linear-gradient(to top, #01001B , #01001B50);
+    }
+    .waves-effect.waves-light { 
+      background: purple linear-gradient(to bottom, #A63FFF , #22A8FF90);  
+    }
+    
+    </style> 
+
+</head>
+<body>
+
+
+  <nav class="nav-wrapper" role="navigation">
+    <div class="container">
+      <a href="{% url 'index' %}" class="brand-logo"><img src="{% static 'img/cblogo.png' %}" alt="Logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
+        {% if user.is_creator %}
+        <li><a href="{% url 'newpost' %}"><i class="material-icons left">add_box</i>Post</a></li>
+        <li><a href="{% url 'newtier' %}"><i class="material-icons left">add_box</i>New tier</a></li>
+        {% endif %}
+        <li><a href="{% url 'shop-index' %}"><i class="material-icons left">store</i>Shop</a></li>
+        <li><a href="{% url 'inbox' %}"><i class="material-icons left">message</i>Messages</a></li>
+        <li><a href="{% url 'search_users' %}"><i class="material-icons left">search</i>Search</a></li>
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">person</i>Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        {% if nav_profile.banner %}
+          <img src="{{ nav_profile.banner.url }}" style="max-width: 100%;">
+        {% else %}
+          <img src="{% static 'img/nobanner.jpg' %}">
+        {% endif %}
+      </div>
+      <a href="#user">
+      {% if nav_profile.picture %}
+        <img src="{{ nav_profile.picture.url }}" class="circle responsive-img" style="outline: 3px solid white;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);">
+      {% else %}
+        <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img" style="outline: 3px solid white;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);">
+      {% endif %} 
+      </a>
+      <a href="#name"><span class="white-text name">{{ nav_profile.user.first_name }} {{ nav_profile.user.last_name }}</span></a>
+      <a href="#email"><span class="white-text email">{{ nav_profile.user.email }}</span></a>
+    </div></li>
+    <li><a href="{% url 'myfans' %}"><i class="material-icons">star</i>{{ fans }}     Supporters</a></li>
+    <li><a href="{% url 'myfollows' %}"><i class="material-icons">people</i>{{ follows }}     Following</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Me</a></li>
+    <li><a href="{% url 'profile' nav_profile.user.username %}"><i class="material-icons">person</i>My profile</a></li>
+    <li><a href="{% url 'show-notifications' %}"><i class="material-icons left">notifications</i>Notifications<span class="new badge">{{ count_notifications }}</span></a></li>
+    <li><a href="{% url 'bookmarks' %}"><i class="material-icons">bookmarks</i>Saved</a></li>
+    <li><a href="{% url 'show-my-lists' %}"><i class="material-icons">list</i>Lists</a></li>
+    <li><div class="divider"></div></li>
+    {% if user.is_creator %}
+    <li><a class="subheader">Store</a></li>
+    <li><a href="{% url 'shop-userindex' %}"><i class="material-icons">view_list</i>My Products</a></li>
+    <li><a href="{% url 'create_product' %}"><i class="material-icons">add</i>New Product</a></li>
+    {% endif %}
+    <li><div class="divider"></div></li>
+    <li><a href="{% url 'logout' %}"><i class="material-icons">power_off</i>Log out</a></li>
+  </ul>
+
+
+<div class="container">
+  <div class="row">
+
+    {% block banner %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    
+  </div>
+</div>
+
+
+
+  <footer class="page-footer">
+    <div class="container"> 
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Creator Base</h5>
+          <p class="grey-text text-lighten-4">Introducing CreatorBase, the ultimate platform for creators to connect with their supporters and monetize their content. With CreatorBase, creators can easily set up subscription tiers and offer exclusive content to their supporters.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      ©️ 2022 Copyright owned by <a class="grey-text text-lighten-3" href="http://materializecss.com">CB</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+  {% block javascript %}
+  {% endblock %}
+
+  </body>
+</html>

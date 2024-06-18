@@ -1,0 +1,33 @@
+<!-- subscribe.html -->
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="col s12 offset-s3">
+    <div class="col s12 m6">
+        <div class="card">
+            <form method="post" action="" enctype="multipart/form-data" role="form" class="col s12">
+                <h5 class="center-align">Subscribe to {{ tier.title }} Tier</h5>
+    {% csrf_token %}
+    <label for="name">Name on card:</label>
+    <input type="text" name="name" id="name">
+    <br>
+    <label for="card_number">Card number:</label>
+    <input type="text" name="card_number" id="card_number">
+    <br>
+    <label for="expiration_date">Expiration date:</label>
+    <input type="text" name="expiration_date" id="expiration_date">
+    <br>
+    <button class="btn waves-effect waves-light" type="submit">Subscribe for ${{ tier.price }}</button>
+</form>
+        </div></div></div>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

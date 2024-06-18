@@ -1,0 +1,175 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/dark-mode.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style> 
+    .nav-wrapper { 
+      background: #1D1B47 linear-gradient(to bottom, #01001B , #01001B50);
+      border-bottom: 2px solid transparent;
+      border-color: #311b92;
+      
+    } 
+    .page-footer {
+      background: #1D1B47 linear-gradient(to top, #01001B , #01001B50);
+    }
+
+
+</style> 
+
+</head>
+<body>
+
+  <nav class="nav-wrapper" role="navigation">
+    <div class="container">
+      <a href="{% url 'index' %}" class="brand-logo">
+        <img src="{% static 'img/cblogo-white.png' %}" alt="Logo" style="height: 55px; padding-top: 5px;">
+      </a>
+      <ul class="right hide-on-med-and-down" style="display: flex; align-items: center;">
+        <li><a href="{% url 'login' %}">Log in</a></li>
+        <li><button class="btn waves-effect waves-light" onclick="window.location.href='{% url 'creator_signup' %}'">Sign Up as Creator</button></li>
+        <li style="display: flex; align-items: center; margin-left: 10px;">
+          <button class="btn-floating waves-effect waves-light right" title="Switch to Dark Mode" onclick="toggleDarkMode()" id="dark-mode-toggle">
+            <i class="material-icons" style="vertical-align: middle;">brightness_4</i> <!-- Moon icon by default -->
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+      
+
+      <div>
+        <h4 class="center"><b>Creativity powered by membership</b></h4>
+        <p class="center">Accept donations. Start a membership. Sell anything you like. <br>
+        It’s easier than you think.</p>
+      </div>
+      <div class="center">
+        <button class="btn waves-effect waves-light " style="width: 150px;height: 42px; " onclick="window.location.href='{% url 'creator_signup' %}'"> <b style="font-size:medium;">Get Started</b></button>
+      </div>
+      <br>
+      <div class="container">
+         <img class="responsive-img" src="{% static 'images/cb_img1.jpg' %}" style="border-radius: 25px">
+      </div>
+      <br>
+      <div>
+        <h4 class="center"><b>What is Creator Base?</b></h4>
+        <p class="center">Creator Base is the best place for creators to build memberships by providing exclusive access<br>
+          to their work and a deeper connection with their supporters.</p>
+      </div>
+      <br>
+      <div class="container" style="height: 360px;background-color: #1D1B47; border-radius: 25px">
+        <img class="responsive-img" src="{% static 'images/cb_img2.png' %}" style="border-radius: 25px; height: 360px; width: 1100px;" >
+     </div>
+     <br>
+     <div class="container">
+      <div class="column" style="float: left;width: 50%;text-align: center;">
+      <h5 style="color: #22A8FF;"><b>Donations</b></h5>
+      <p  style="font-size:xx-large;"><b>Give your audience an<br>easy way to say thanks.</b></p>
+      </div>
+        <div class="column" style="float: left;width: 50%;text-align: center;">
+        <h5 style="color: #A63FFF;"><b>Memberships</b></h5>
+        <p  style="font-size:xx-large;"><b>
+          Monthly membership for <br> your biggest fans.</b></p>
+        </div>
+      <div class="center">
+        
+        <h5 style="color: orangered;"><b>Store</b></h5>
+        <p  style="font-size:xx-large;"><b>
+          Introducing Creator Store, <br> the creative way to sell.</b></p>
+      </div>
+     </div>
+     </div>
+     <br>
+     <div class="center">
+      <h2><b>Ready to start your membership?</b></h2>
+      <div class="center">
+        <button class="btn waves-effect waves-light " style="width: 150px;height: 42px; " onclick="window.location.href='{% url 'creator_signup' %}'"> <b style="font-size:medium;">Get Started</b></button>
+      </div>
+     </div>
+<br><br>
+     <div class="container">
+      <div class="row">
+    
+        {% block banner %}
+        {% endblock %}
+    
+        {% block content %}
+        {% endblock %}
+        
+      </div>
+    </div>
+
+
+
+
+
+
+      <footer class="page-footer">
+        <div class="container"> 
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Creator Base</h5>
+              <p class="grey-text text-lighten-4">Introducing CreatorBase, the ultimate platform for creators to connect with their supporters and monetize their content. With CreatorBase, creators can easily set up subscription tiers and offer exclusive content to their supporters.</p>
+            </div>
+            <br>
+            <div class="right">
+              
+              <a href="{% url 'contact' %}">Contact</a><br>
+              <a href="{% url 'privacy' %}">Privacy</a><br>
+              
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          ©️ CreatorBase
+          </div>
+        </div>
+      </footer>
+    
+    
+      <!--  Scripts-->
+      <script>
+        function toggleDarkMode() {
+          var element = document.body;
+          element.classList.toggle("dark-mode");
+          var darkModeToggle = document.getElementById("dark-mode-toggle");
+          if (element.classList.contains("dark-mode")) {
+            darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Light Mode">wb_sunny</i>';
+            localStorage.setItem('darkMode', true);
+          } else {
+            darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Dark Mode">brightness_4</i>';
+            localStorage.setItem('darkMode', false);
+          }
+        }
+        
+        // Check for dark mode preference on page load
+        var darkModePref = localStorage.getItem('darkMode');
+        if (darkModePref === 'true') {
+          document.body.classList.add('dark-mode');
+          var darkModeToggle = document.getElementById("dark-mode-toggle");
+          darkModeToggle.innerHTML = '<i class="material-icons" title="Switch to Light Mode">wb_sunny</i>';
+        }
+        </script>
+      
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="{% static 'js/materialize.js' %}"></script>
+      <script src="{% static 'js/init.js' %}"></script>
+    
+      {% block javascript %}
+      {% endblock %}
+    
+      </body>
+    </html>

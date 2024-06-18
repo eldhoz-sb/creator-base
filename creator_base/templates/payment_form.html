@@ -1,0 +1,17 @@
+<!-- payment_form.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <label for="amount">Amount:</label>
+    <input type="text" name="amount" id="amount">
+    <br>
+    <label for="card_number">Card number:</label>
+    <input type="text" name="card_number" id="card_number">
+    <br>
+    <button type="submit">Submit payment</button>
+</form>
+
+{% endblock %}

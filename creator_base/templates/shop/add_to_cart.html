@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row"><h4>Add to Cart</h4>
+  <h6>{{ product.name }}</h6>
+  <div class="col s5">
+  <div class="card-image">
+    <img src="{{ product.image.url }}" class="square responsive-img" width="250">
+  </div>
+  <p>{{ product.description }}</p>
+  <p>Price: ${{ product.price }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn waves-effect waves-light" type="submit">Add to Cart</button>
+  </form>
+  </div>
+  </div>
+</div>
+{% endblock %}

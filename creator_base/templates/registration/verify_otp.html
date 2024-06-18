@@ -1,0 +1,23 @@
+{% block content %}
+  <h2>Verify OTP</h2>
+  <p>Enter the OTP sent to your email address:</p>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <label for="id_otp">OTP:</label>
+    <input type="text" name="otp" id="id_otp" required>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <br><br>
+    <label for="id_new_password">New Password:</label>
+    {{ form.new_password }}
+    <label for="id_confirm_password">Confirm Password:</label>
+    {{ form.confirm_password }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

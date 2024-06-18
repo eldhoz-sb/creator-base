@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="section">
+  <h5>My subscriptions:</h5>
+  <p>People I am following</p>
+</div>
+<div class="divider" style="color: grey;"></div>
+
+{% for person in my_follows %}
+    <div class="col s12 m4">
+              <div class="card">
+                
+                <div class="card-image"><a href="{% url 'profile' person.subscribed.username %}">
+                {% if person.subscribed.profile.banner %}
+                    <img src="{{ person.subscribed.profile.banner.url }}">
+                  {% else %}
+                    <img src="{% static 'img/nobanner.jpg' %}">
+                  {% endif %}
+                  
+                </div>
+                <div class="card-action">
+                    <div class="row">
+                        <div class="col s4">
+                        {% if person.subscribed.profile.picture %}
+                            <img src="{{ person.subscribed.profile.picture.url }}" class="circle responsive-img">
+                          {% else %}
+                            <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
+                          {% endif %}
+                        
+                          {% if person.expired == True %}
+                            <span class="red-text">Expired</span>
+                          {% else %}
+                            <span class="orange-text"><b>{{ person.date }}</b> days left</span>
+                          {% endif %}
+                        </a>
+                        </div>
+                        <div class="col s8">
+                            <span class="card-title"><a href="{% url 'profile' person.subscribed.username %}" style="color: #22A8FF;">
+                                {{ person.subscribed.first_name }} {{ person.subscribed.last_name }}</strong>
+                            </span>
+                            <br>
+                            <span><small>@{{ person.subscribed.username }}</small></span></a><br>
+                            <small>{{ person.subscribed.profile.profile_info }}</small><br>
+                            {% if person.expired == True %}
+                                <a class="waves-effect waves-light btn amber"><i class="material-icons left">autorenew</i>Renew subscription</a>
+                            {% else %}
+                                <a class="waves-effect waves-light btn red" style="margin: 5px;"><i class="material-icons left">cancel</i>Cancel subscription</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+              </div>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

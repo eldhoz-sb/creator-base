@@ -1,0 +1,126 @@
+/* Dark mode */
+.dark-mode {
+    background-color: #1D1B47 !important;
+    color: #f0f0f0;
+   
+  }
+
+
+
+.dark-mode .card {
+    background-color: #04021fe0;
+    color: #fff;
+  }
+
+.dark-mode .card-image {
+    background-color: #1D1B47; /* your desired background color */
+  }
+ 
+#dark-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  #dark-mode-toggle i {
+    align-items: center;
+  }
+
+/*Messages Template css*/
+.dark-mode .collection-header {
+    background-color: #1D1B47 !important;
+}
+
+/*Input Fields*/
+
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="number"],
+.dark-mode input[type="password"] {
+  color: #fff;
+}
+
+.dark-mode label.active {
+    color: #fff;
+  }
+
+.dark-mode textarea {
+    color: #fff;
+}
+
+/* label focus color */
+.dark-mode .input-field input:focus + label {
+    color:  #22A8FF !important;
+  }
+  /* label underline focus color */
+.dark-mode .row .input-field input:focus {
+    border-bottom: 1px solid #22A8FF !important;
+    box-shadow: 0 1px 0 0 #22A8FF !important;
+  }
+  
+ .dark-mode .input-field textarea:focus + label {
+    color: #22A8FF!important;
+  }
+  
+ .dark-mode .input-field textarea:focus{
+    border-bottom: 1px solid #22A8FF !important;
+    box-shadow: 0 1px 0 0 #22A8FF !important;
+  }
+
+  .dark-mode .input-field:focus-within .material-icons {
+    color: #22A8FF;
+  }
+
+
+  /*SideNav*/
+
+/* Dark mode styles for sidenav */
+.dark-mode .sidenav {
+    background-color: #1D1B47; /* dark background color */
+    color: #f5f5f5; /* light text color */
+  }
+  
+  .dark-mode .user-view .background img {
+    filter: brightness(0.5); /* darken banner image */
+  }
+  
+  .dark-mode .user-view .name,
+  .dark-mode .user-view .email {
+    color: #f5f5f5; /* light text color for name and email */
+  }
+  
+  .dark-mode .user-view .circle {
+    outline-color: #f5f5f5; /* light outline color for user avatar */
+  }
+  
+  .dark-mode .sidenav li a {
+    color: #f5f5f5; /* light text color for links */
+  }
+  
+  .dark-mode .sidenav li a:hover,
+  .dark-mode .sidenav li a.active {
+    background-color: #424242; /* darker background color on hover and active */
+  }
+  
+  .dark-mode .sidenav .divider {
+    border-color: #424242; /* darker color for divider */
+  }
+  
+  .dark-mode .sidenav .subheader {
+    color: #f5f5f5; /* light text color for subheader */
+  }
+  
+  .dark-mode .sidenav li i {
+    color: #f5f5f5; /* light icon color */
+  }
+  
+  .dark-mode .new.badge {
+    background-color: #f44336; /* red background color for notification badge */
+  }
+  
+  .dark-mode .sidenav .material-icons {
+    color: #f5f5f5; /* light icon color */
+  }
+
+  

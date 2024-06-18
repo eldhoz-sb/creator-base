@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <h2>Available Products</h2>
+
+            {% for product in all_products %}
+            <div class="col s5">
+                <div class="card">
+    
+                  <div class="card-image">
+                    <img src="{{ product.image.url }}" class="square responsive-img" width="60">
+                  </div>
+                    <span class="card-title"><b><a href="{% url 'add_to_cart' product.id %}">&nbsp;{{ product.name }}</a></b></span>
+                    <p>&nbsp;&nbsp;Price ${{ product.price }}</p>
+                    <p class="right-align grey-text">By {{ product.user.first_name }} {{ product.user.last_name }}&nbsp;&nbsp;</p>
+                  <br>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
